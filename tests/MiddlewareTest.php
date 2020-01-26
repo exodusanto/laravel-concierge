@@ -11,7 +11,8 @@ use Exodusanto\Concierge\Tests\Stubs\UserWithoutContract;
 
 class TestMiddleware extends TestCase
 {
-    public function testCreateToken()
+    /** @test */
+    public function create_token()
     {
         $this->setConfig();
         $user = $this->loginUser();
@@ -21,7 +22,8 @@ class TestMiddleware extends TestCase
         $this->assertNotEquals(null, $user->fresh()->api_token);
     }
 
-    public function testRefreshToken()
+    /** @test */
+    public function refresh_token()
     {
         $this->setConfig();
         $user = $this->loginUser();
@@ -36,7 +38,8 @@ class TestMiddleware extends TestCase
         $this->assertNotEquals($token, $user->fresh()->api_token);
     }
 
-    public function testRefreshTokenNoTimeoutSkip()
+    /** @test */
+    public function refresh_token_no_timeout_skip()
     {
         $this->setConfig();
         $user = $this->loginUser();
@@ -51,7 +54,8 @@ class TestMiddleware extends TestCase
         $this->assertEquals($token, $user->fresh()->api_token);
     }
 
-    public function testUserWithoutContractSkip()
+    /** @test */
+    public function user_without_contract_skip()
     {
         $this->setConfig();
         $user = $this->loginUser(UserWithoutContract::class);
@@ -61,7 +65,8 @@ class TestMiddleware extends TestCase
         $this->assertEquals(null, $user->fresh()->api_token);
     }
 
-    public function testNoConciergeConfigSkip()
+    /** @test */
+    public function no_concierge_config_skip()
     {
         $this->setConfig(true);
         $user = $this->loginUser();
@@ -71,7 +76,8 @@ class TestMiddleware extends TestCase
         $this->assertEquals(null, $user->fresh()->api_token);
     }
 
-    public function testNoUserAuthSkip()
+    /** @test */
+    public function no_user_auth_skip()
     {
         $this->setConfig();
         $this->createAndHandleRequest();
@@ -85,7 +91,8 @@ class TestMiddleware extends TestCase
 
         $middleware = new RefreshApiToken;
 
-        $middleware->handle($request, function() {});
+        $middleware->handle($request, function () {
+        });
     }
 
     /**
