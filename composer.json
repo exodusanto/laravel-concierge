@@ -1,0 +1,54 @@
+{
+    "name": "exodusanto/laravel-concierge",
+    "description": "Api token authentication for laravel projects",
+    "keywords": [
+        "exodusanto",
+        "laravel-concierge"
+    ],
+    "homepage": "https://github.com/exodusanto/laravel-concierge",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Antonio Dal Sie",
+            "email": "info@antoniodalsie.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "doctrine/dbal": "^2.10",
+        "illuminate/support": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Exodusanto\\Concierge\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Exodusanto\\Concierge\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Exodusanto\\Concierge\\ConciergeServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
