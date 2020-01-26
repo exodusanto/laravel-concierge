@@ -2,7 +2,6 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/exodusanto/laravel-concierge.svg?style=flat-square)](https://packagist.org/packages/exodusanto/laravel-concierge)
 [![Build Status](https://img.shields.io/travis/exodusanto/laravel-concierge/master.svg?style=flat-square)](https://travis-ci.org/exodusanto/laravel-concierge)
-[![Quality Score](https://img.shields.io/scrutinizer/g/exodusanto/laravel-concierge.svg?style=flat-square)](https://scrutinizer-ci.com/g/exodusanto/laravel-concierge)
 [![Total Downloads](https://img.shields.io/packagist/dt/exodusanto/laravel-concierge.svg?style=flat-square)](https://packagist.org/packages/exodusanto/laravel-concierge)
 
 🚧 description wip 🚧
