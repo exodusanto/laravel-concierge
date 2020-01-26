@@ -1,4 +1,4 @@
-# Api authentication concierge for your laravel application
+# Laravel concierge
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/exodusanto/laravel-concierge.svg?style=flat-square)](https://packagist.org/packages/exodusanto/laravel-concierge)
 [![Build Status](https://img.shields.io/travis/exodusanto/laravel-concierge/master.svg?style=flat-square)](https://travis-ci.org/exodusanto/laravel-concierge)
