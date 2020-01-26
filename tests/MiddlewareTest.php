@@ -4,8 +4,8 @@ namespace Exodusanto\Concierge\Tests;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Laravel\Nova\Tests\Fixtures\User;
 use Exodusanto\Concierge\Tests\TestCase;
+use Exodusanto\Concierge\Tests\Stubs\User;
 use Exodusanto\Concierge\Http\Middleware\RefreshApiToken;
 use Exodusanto\Concierge\Tests\Stubs\UserWithoutContract;
 
