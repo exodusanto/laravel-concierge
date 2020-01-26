@@ -52,6 +52,6 @@ class TestCase extends TestCaseBase
 
     protected function setConciergeTokenLifetime()
     {
-        Config::set('laravel-concierge.token_lifetime.users', 60 * 60); // 1h
+        Config::set('laravel-concierge.tokens_lifetime.users', 60 * 60); // 1h
     }
 }
