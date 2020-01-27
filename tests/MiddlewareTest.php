@@ -77,6 +77,17 @@ class TestMiddleware extends TestCase
     }
 
     /** @test */
+    public function post_request_skip()
+    {
+        $this->setConfig();
+        $user = $this->loginUser();
+
+        $this->createAndHandleRequest('POST');
+
+        $this->assertEquals(null, $user->fresh()->api_token);
+    }
+
+    /** @test */
     public function no_user_auth_skip()
     {
         $this->setConfig();
@@ -85,9 +96,9 @@ class TestMiddleware extends TestCase
         $this->assertTrue(true);
     }
 
-    protected function createAndHandleRequest()
+    protected function createAndHandleRequest($method = 'GET')
     {
-        $request = Request::create('/', 'GET');
+        $request = Request::create('/', $method);
 
         $middleware = new RefreshApiToken;
 
