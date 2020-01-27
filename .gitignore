@@ -3,5 +3,5 @@ composer.lock
 docs
 vendor
 coverage*
-phpunit.result.cache
+.phpunit.result.cache
 .DS_Store
