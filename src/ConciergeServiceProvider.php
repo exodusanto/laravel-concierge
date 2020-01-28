@@ -3,7 +3,6 @@
 namespace Exodusanto\Concierge;
 
 use Illuminate\Support\ServiceProvider;
-use Exodusanto\Concierge\MakeMigrationCommand;
 
 class ConciergeServiceProvider extends ServiceProvider
 {

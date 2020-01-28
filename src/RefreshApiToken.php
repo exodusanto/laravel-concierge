@@ -2,6 +2,7 @@
 
 namespace Exodusanto\Concierge;
 
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 trait RefreshApiToken
@@ -17,6 +18,16 @@ trait RefreshApiToken
     }
 
     /**
+     * Get the api_token of the user
+     *
+     * @return string|null
+     */
+    public function getApiToken()
+    {
+        return $this->{$this->getApiTokenName()};
+    }
+
+    /**
      * Get the name of the "api_token_refreshed_at" column
      *
      * @return string
@@ -24,6 +35,16 @@ trait RefreshApiToken
     public function getApiTokenRefreshedAtName()
     {
         return 'api_token_refreshed_at';
+    }
+
+    /**
+     * Get the api_token of the user
+     *
+     * @return Carbon|null
+     */
+    public function getApiTokenRefreshedAt()
+    {
+        return $this->{$this->getApiTokenRefreshedAtName()};
     }
 
     /**
@@ -52,7 +73,7 @@ trait RefreshApiToken
     }
 
     /**
-     * Revoke the api token by assigning null value
+     * Revoke the api token
      *
      * @return void
      */

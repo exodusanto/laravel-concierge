@@ -21,7 +21,7 @@ class CustomUserAttributesTest extends TestCase
 
         $this->createAndHandleRequest();
 
-        $this->assertNotEquals(null, $user->fresh()->token);
+        $this->assertNotEquals(null, $user->getApiToken());
     }
 
     /** @test */
@@ -31,13 +31,13 @@ class CustomUserAttributesTest extends TestCase
         $user = $this->loginUser(CustomUser::class);
 
         $user->refreshApiToken();
-        $token = $user->fresh()->token;
+        $token = $user->getApiToken();
 
         Carbon::setTestNow(now()->addHour(1));
 
         $this->createAndHandleRequest();
 
-        $this->assertNotEquals($token, $user->fresh()->token);
+        $this->assertNotEquals($token, $user->getApiToken());
     }
 
     /** @test */
@@ -47,13 +47,13 @@ class CustomUserAttributesTest extends TestCase
         $user = $this->loginUser(CustomUser::class);
 
         $user->refreshApiToken();
-        $token = $user->fresh()->token;
+        $token = $user->getApiToken();
 
         Carbon::setTestNow(now()->addMinutes(10));
 
         $this->createAndHandleRequest();
 
-        $this->assertEquals($token, $user->fresh()->token);
+        $this->assertEquals($token, $user->getApiToken());
     }
 
     protected function createAndHandleRequest($method = 'GET')
