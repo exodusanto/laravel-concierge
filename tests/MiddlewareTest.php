@@ -96,6 +96,21 @@ class TestMiddleware extends TestCase
         $this->assertTrue(true);
     }
 
+    /** @test */
+    public function revoke_token()
+    {
+        $this->setConfig();
+        $user = $this->loginUser();
+
+        $user->refreshApiToken();
+
+        $this->assertNotNull($user->fresh()->api_token);
+
+        $user->revokeApiToken();
+
+        $this->assertNull($user->fresh()->api_token);
+    }
+
     protected function createAndHandleRequest($method = 'GET')
     {
         $request = Request::create('/', $method);
