@@ -2,7 +2,6 @@
 
 namespace Exodusanto\Concierge\Tests\Stubs;
 
-use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\User as BaseUser;
 use Exodusanto\Concierge\Contracts\RefreshApiTokenContract;
 use Exodusanto\Concierge\RefreshApiToken;

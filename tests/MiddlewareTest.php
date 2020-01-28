@@ -121,17 +121,4 @@ class TestMiddleware extends TestCase
         });
     }
 
-    /**
-     * Create and login user
-     *
-     * @param string $class
-     * @return User
-     */
-    protected function loginUser($class = null)
-    {
-        $user = $this->createUser($class);
-        $this->actingAs($user);
-
-        return $user;
-    }
 }

@@ -33,6 +33,20 @@ abstract class TestCase extends TestCaseBase
         return $user;
     }
 
+    /**
+     * Create and login user
+     *
+     * @param string $class
+     * @return User
+     */
+    public function loginUser($class = null)
+    {
+        $user = $this->createUser($class);
+        $this->actingAs($user);
+
+        return $user;
+    }
+
     public function setConfig($onlyAuth = false)
     {
         $this->setAuthProviderConfig();

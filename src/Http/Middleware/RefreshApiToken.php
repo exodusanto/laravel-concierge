@@ -57,7 +57,7 @@ class RefreshApiToken
     {
         if ($timeout = $this->getTimeout($provider)) {
             /** @var Carbon $lastRefreshedAt */
-            $lastRefreshedAt = $user->api_token_refreshed_at;
+            $lastRefreshedAt = $user->{$user->getApiTokenRefreshedAtName()};
 
             if (!$lastRefreshedAt || now()->gt($lastRefreshedAt->addSeconds($timeout))) {
                 $user->refreshApiToken();
