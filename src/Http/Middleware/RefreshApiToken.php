@@ -56,8 +56,8 @@ class RefreshApiToken
     protected function refreshTokenIfExpired(RefreshApiTokenContract $user, $provider)
     {
         if ($timeout = $this->getTimeout($provider)) {
-            /** @var Carbon $lastRefreshedAt */
-            $lastRefreshedAt = $user->{$user->getApiTokenRefreshedAtName()};
+            /** @var Carbon|null $lastRefreshedAt */
+            $lastRefreshedAt = $user->getApiTokenRefreshedAt();
 
             if (!$lastRefreshedAt || now()->gt($lastRefreshedAt->addSeconds($timeout))) {
                 $user->refreshApiToken();
