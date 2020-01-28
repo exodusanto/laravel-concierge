@@ -21,13 +21,25 @@ trait RefreshApiToken
     protected $apiTokenRefreshedAt = 'api_token_refreshed_at';
 
     /**
+     * Generate a new token
+     *
+     * @return string
+     */
+    protected function generateNewToken()
+    {
+        return Str::random(60);
+    }
+
+    /**
      * Refresh the api token
      *
      * @return void
      */
     public function refreshApiToken()
     {
-        $this->{$this->apiToken} = Str::random(60);
+        $token = $this->generateNewToken();
+
+        $this->{$this->apiToken} = $token;
         $this->{$this->apiTokenRefreshedAt} = now();
 
         $this->save();
