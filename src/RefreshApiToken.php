@@ -7,18 +7,24 @@ use Illuminate\Support\Str;
 trait RefreshApiToken
 {
     /**
-     * The column name of the "api_token" token.
+     * Get the name of the "api_token" column
      *
-     * @var string
+     * @return string
      */
-    protected $apiToken = 'api_token';
+    public function getApiTokenName()
+    {
+        return 'api_token';
+    }
 
     /**
-     * The column name of the "api_token_refreshed_at" timestamp.
+     * Get the name of the "api_token_refreshed_at" column
      *
-     * @var string
+     * @return string
      */
-    protected $apiTokenRefreshedAt = 'api_token_refreshed_at';
+    public function getApiTokenRefreshedAtName()
+    {
+        return 'api_token_refreshed_at';
+    }
 
     /**
      * Generate a new token
@@ -39,8 +45,8 @@ trait RefreshApiToken
     {
         $token = $this->generateNewToken();
 
-        $this->{$this->apiToken} = $token;
-        $this->{$this->apiTokenRefreshedAt} = now();
+        $this->{$this->getApiTokenName()} = $token;
+        $this->{$this->getApiTokenRefreshedAtName()} = now();
 
         $this->save();
     }
@@ -52,8 +58,8 @@ trait RefreshApiToken
      */
     public function revokeApiToken()
     {
-        $this->{$this->apiToken} = null;
-        $this->{$this->apiTokenRefreshedAt} = null;
+        $this->{$this->getApiTokenName()} = null;
+        $this->{$this->getApiTokenRefreshedAtName()} = null;
 
         $this->save();
     }
