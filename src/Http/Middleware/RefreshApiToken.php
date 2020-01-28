@@ -4,7 +4,7 @@ namespace Exodusanto\Concierge\Http\Middleware;
 
 use Closure;
 use Carbon\Carbon;
-use Exodusanto\Concierge\Contracts\TimeoutApiToken;
+use Exodusanto\Concierge\Contracts\RefreshApiTokenContract;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +23,7 @@ class RefreshApiToken
         if ($request->isMethod('GET') && $user = Auth::guard($guard)->user()) {
             $provider = $this->getProviderName(get_class($user));
 
-            if ($provider && $user instanceof TimeoutApiToken) {
+            if ($provider && $user instanceof RefreshApiTokenContract) {
                 $this->refreshTokenIfExpired($user, $provider);
             }
         }
@@ -49,11 +49,11 @@ class RefreshApiToken
     /**
      * Check if user token is expired and run refresh method
      *
-     * @param TimeoutApiToken $user
+     * @param RefreshApiTokenContract $user
      * @param string $provider
      * @return void
      */
-    protected function refreshTokenIfExpired(TimeoutApiToken $user, $provider)
+    protected function refreshTokenIfExpired(RefreshApiTokenContract $user, $provider)
     {
         if ($timeout = $this->getTimeout($provider)) {
             /** @var Carbon $lastRefreshedAt */

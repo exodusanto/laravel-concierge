@@ -2,7 +2,7 @@
 
 namespace Exodusanto\Concierge\Contracts;
 
-interface TimeoutApiToken
+interface RefreshApiTokenContract
 {
     public function refreshApiToken();
     public function revokeApiToken();
