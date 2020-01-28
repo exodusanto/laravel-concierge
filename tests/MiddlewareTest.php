@@ -19,7 +19,7 @@ class TestMiddleware extends TestCase
 
         $this->createAndHandleRequest();
 
-        $this->assertNotEquals(null, $user->fresh()->api_token);
+        $this->assertNotEquals(null, $user->getApiToken());
     }
 
     /** @test */
@@ -29,13 +29,13 @@ class TestMiddleware extends TestCase
         $user = $this->loginUser();
 
         $user->refreshApiToken();
-        $token = $user->fresh()->api_token;
+        $token = $user->getApiToken();
 
         Carbon::setTestNow(now()->addHour(1));
 
         $this->createAndHandleRequest();
 
-        $this->assertNotEquals($token, $user->fresh()->api_token);
+        $this->assertNotEquals($token, $user->getApiToken());
     }
 
     /** @test */
@@ -45,19 +45,21 @@ class TestMiddleware extends TestCase
         $user = $this->loginUser();
 
         $user->refreshApiToken();
-        $token = $user->fresh()->api_token;
+        $token = $user->getApiToken();
 
         Carbon::setTestNow(now()->addMinutes(10));
 
         $this->createAndHandleRequest();
 
-        $this->assertEquals($token, $user->fresh()->api_token);
+        $this->assertEquals($token, $user->getApiToken());
     }
 
     /** @test */
     public function user_without_contract_skip()
     {
         $this->setConfig();
+
+        /** @var UserWithoutContract $user */
         $user = $this->loginUser(UserWithoutContract::class);
 
         $this->createAndHandleRequest();
@@ -73,7 +75,7 @@ class TestMiddleware extends TestCase
 
         $this->createAndHandleRequest();
 
-        $this->assertEquals(null, $user->fresh()->api_token);
+        $this->assertEquals(null, $user->getApiToken());
     }
 
     /** @test */
@@ -84,7 +86,7 @@ class TestMiddleware extends TestCase
 
         $this->createAndHandleRequest('POST');
 
-        $this->assertEquals(null, $user->fresh()->api_token);
+        $this->assertEquals(null, $user->getApiToken());
     }
 
     /** @test */
@@ -104,11 +106,11 @@ class TestMiddleware extends TestCase
 
         $user->refreshApiToken();
 
-        $this->assertNotNull($user->fresh()->api_token);
+        $this->assertNotNull($user->getApiToken());
 
         $user->revokeApiToken();
 
-        $this->assertNull($user->fresh()->api_token);
+        $this->assertNull($user->getApiToken());
     }
 
     protected function createAndHandleRequest($method = 'GET')
