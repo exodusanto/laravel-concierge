@@ -14,7 +14,7 @@ class ConciergeServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->publishes([
-                __DIR__.'/../config/config.php' => config_path('laravel-concierge.php'),
+                __DIR__.'/../config/config.php' => config_path('concierge.php'),
             ], 'config');
         }
     }
@@ -24,6 +24,6 @@ class ConciergeServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laravel-concierge');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'concierge');
     }
 }

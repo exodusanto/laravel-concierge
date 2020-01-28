@@ -73,6 +73,6 @@ class RefreshApiToken
      */
     protected function getTimeout($provider)
     {
-        return config("laravel-concierge.tokens_lifetime.{$provider}", false);
+        return config("concierge.tokens_lifetime.{$provider}", false);
     }
 }
