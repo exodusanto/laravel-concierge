@@ -7,7 +7,7 @@ use Orchestra\Testbench\TestCase as TestCaseBase;
 use Exodusanto\Concierge\ConciergeServiceProvider;
 use Illuminate\Support\Facades\Config;
 
-class TestCase extends TestCaseBase
+abstract class TestCase extends TestCaseBase
 {
     protected function getPackageProviders($app)
     {
