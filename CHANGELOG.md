@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-concierge` will be documented in this file
 
+## 0.3.0 - 2020-01-28
+
+- refactor trait to handle different column name (dc0c6271e427e2c1702d15be269ab6162f4eb1eb)
+
 ## 0.2.2 - 2020-01-28
 
 - add `generateNewToken` method to RefreshApiToken (e7968c94488bff72d0b85e00e4babdf8f0c87410)
