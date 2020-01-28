@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-concierge` will be documented in this file
 
+## 0.2.1 - 2020-01-28
+
+- rename config file from 'laravel-concierge' to 'concierge'
+
 ## 0.2.0 - 2020-01-28
 
 - add RefreshApiToken trait (b411cbe)
