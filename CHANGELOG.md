@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-concierge` will be documented in this file
 
+## 0.3.2 - 2020-02-01
+
+- add "@concierge" blade directive
+
 ## 0.3.1 - 2020-01-28
 
 - add "getApiToken" and "getApiTokenRefreshedAt" methods (9b1dddda28e6c51c3386d89d791816675b594a88)
