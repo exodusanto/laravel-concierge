@@ -4,7 +4,7 @@
 [![Build Status](https://img.shields.io/travis/exodusanto/laravel-concierge/master.svg?style=flat-square)](https://travis-ci.org/exodusanto/laravel-concierge)
 [![Total Downloads](https://img.shields.io/packagist/dt/exodusanto/laravel-concierge.svg?style=flat-square)](https://packagist.org/packages/exodusanto/laravel-concierge)
 
-🚧 description wip 🚧
+Extend the [base solution](https://laravel.com/docs/6.x/api-authentication) from Laravel plus some new features
 
 ## Installation
 
@@ -16,9 +16,79 @@ composer require exodusanto/laravel-concierge
 
 ## Usage
 
+### 1. Migration
+Migrate your use table with `api_token` and `api_token_refreshed_at`.
+
 ``` php
-// TODO
+Schema::table('users', function (Blueprint $table) {
+    $table->string('api_token')->nullable();
+    $table->timestamp('api_token_refreshed_at')->nullable();
+});
 ```
+
+#### api_token_refreshed_at
+This attribute is use to store the timestamp of `api_token` update
+
+### 2. Model
+Add `RefreshApiToken` trait and `RefreshApiTokenContract` contract to your model
+``` php
+class User extends BaseUser implements RefreshApiTokenContract
+{
+    use RefreshApiToken;
+}
+```
+
+### 3. Config
+
+Publish concierge config
+```bash
+php artisan vendor:publish --tag=concierge-config
+```
+
+Use the same key to identify the right model in `auth.provider` and `concierge.tokens_lifetime`
+``` php
+// config/auth.php
+'providers' => [
+    'users' => [
+        'driver' => 'eloquent',
+        'model' => App\User::class,
+    ],
+]
+
+// config/concierge.php
+'tokens_lifetime' => [
+    'users' => 10800 // 3h
+]
+```
+
+### @Concierge
+
+Concierge is shipped with a custom Blade directive, it will render the token of the authenticated user
+``` twig
+<script>
+    @concierge
+</script>
+
+<!-- Rendered to -->
+<script>
+    __CONCIERGE__ = { "api_token": "XXXXXXXXXXXX" }
+</script>
+```
+
+#### @Concierge options
+`@concierge($guard, $attributeName)`
+``` twig
+<script>
+    @concierge('other_guard', 'my_token')
+</script>
+
+<!-- Rendered to -->
+<script>
+    <!-- Token of other_guard authenticated user -->
+    __CONCIERGE__ = { "my_token": "XXXXXXXXXXXX" }
+</script>
+```
+
 
 ### Testing
 
