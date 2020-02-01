@@ -21,7 +21,7 @@ composer require exodusanto/laravel-concierge
 ## Usage
 
 ### 1. Migration
-Migrate your use table with `api_token` and `api_token_refreshed_at`.
+Migrate your user table with `api_token` and `api_token_refreshed_at`.
 
 ``` php
 Schema::table('users', function (Blueprint $table) {
@@ -49,7 +49,7 @@ Publish concierge config
 php artisan vendor:publish --tag=concierge-config
 ```
 
-Use the same key to identify the right model in `auth.provider` and `concierge.tokens_lifetime`
+Use the same key to identify the right model in `auth.providers` and `concierge.tokens_lifetime`
 ``` php
 // config/auth.php
 'providers' => [
@@ -81,9 +81,7 @@ protected $middlewareGroups = [
 
 Concierge is shipped with a custom Blade directive, it will render the token of the authenticated user
 ``` twig
-<script>
-    @concierge
-</script>
+@concierge
 
 <!-- Rendered to -->
 <script>
@@ -94,9 +92,7 @@ Concierge is shipped with a custom Blade directive, it will render the token of 
 #### @Concierge options
 `@concierge($guard, $attributeName)`
 ``` twig
-<script>
-    @concierge('other_guard', 'my_token')
-</script>
+@concierge('other_guard', 'my_token')
 
 <!-- Rendered to -->
 <script>
