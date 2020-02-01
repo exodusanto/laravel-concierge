@@ -4,7 +4,11 @@
 [![Build Status](https://img.shields.io/travis/exodusanto/laravel-concierge/master.svg?style=flat-square)](https://travis-ci.org/exodusanto/laravel-concierge)
 [![Total Downloads](https://img.shields.io/packagist/dt/exodusanto/laravel-concierge.svg?style=flat-square)](https://packagist.org/packages/exodusanto/laravel-concierge)
 
-Extend the [base solution](https://laravel.com/docs/6.x/api-authentication) from Laravel plus some new features
+Extend the [base solution](https://laravel.com/docs/6.x/api-authentication) from Laravel with some new features
+
+- Auto refresh user token on `GET` requests
+- Refresh/Revoke methods
+- Blade directive
 
 ## Installation
 
@@ -59,6 +63,18 @@ Use the same key to identify the right model in `auth.provider` and `concierge.t
 'tokens_lifetime' => [
     'users' => 10800 // 3h
 ]
+```
+
+### 4. Middleware
+
+Append `RefreshApiToken` to your application `web` middleware group
+```php
+// app/Http/Kernel.php
+protected $middlewareGroups = [
+    'web' => [
+        ...
+        \Exodusanto\Concierge\Http\Middleware\RefreshApiToken::class,
+    ],
 ```
 
 ### @Concierge
