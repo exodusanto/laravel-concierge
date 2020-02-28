@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-concierge` will be documented in this file
 
+## 0.4.0 - 2020-02-28
+
+- add laravel 7 support
+
 ## 0.3.2 - 2020-02-01
 
 - add "@concierge" blade directive
