@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-concierge` will be documented in this file
 
+## 0.5.0 - 2020-09-15
+
+- add laravel 8 support
+
 ## 0.4.0 - 2020-02-28
 
 - add laravel 7 support
