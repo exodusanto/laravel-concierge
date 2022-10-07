@@ -9,7 +9,7 @@ use Exodusanto\Concierge\Tests\Stubs\User;
 use Exodusanto\Concierge\Http\Middleware\RefreshApiToken;
 use Exodusanto\Concierge\Tests\Stubs\UserWithoutContract;
 
-class TestMiddleware extends TestCase
+class MiddlewareTest extends TestCase
 {
     /** @test */
     public function create_token()
